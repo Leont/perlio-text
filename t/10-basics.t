@@ -10,7 +10,7 @@ use Test::Exception;
 use Data::Dumper;
 use Encode qw/encode/;
 use Errno qw/EINVAL/;
-use File::Slurp 9999.14 qw/read_file/;
+use File::Slurp qw/read_file/;
 use PerlIO::Layers qw/query_handle get_layers/;
 
 my $win32 = $^O eq 'MSWin32';
