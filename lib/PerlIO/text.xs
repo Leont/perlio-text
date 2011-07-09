@@ -9,7 +9,7 @@ static IV PerlIOText_pushed(pTHX_ PerlIO *f, const char *mode, SV *arg, PerlIO_f
 		SETERRNO(EINVAL, LIB_INVARG);
 		return -1;
 	}
-	PerlIO_apply_layers(f, mode, ":raw");
+	PerlIO_apply_layers(aTHX_ f, mode, ":raw");
 	PerlIO_funcs* encoding = PerlIO_find_layer(aTHX_ "encoding", 8, 1);
 	if (PerlIO_push(aTHX_ f, encoding, mode, arg) != f)
 		return -1;
