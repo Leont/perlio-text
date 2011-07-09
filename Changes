@@ -1,6 +1,8 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+
+0.002     2011-07-09 18:33:23 Europe/Amsterdam
           Fix PerlIO::text on multiplicity perls
           Downgrade File::Slurp version requirement
 
