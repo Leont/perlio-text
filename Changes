@@ -1,6 +1,8 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+
+0.003     2011-07-22 14:17:07 Europe/Amsterdam
           Fixed vtable assignment on Win32
 
 0.002     2011-07-09 18:33:23 Europe/Amsterdam
