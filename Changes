@@ -1,6 +1,7 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+          Fixed vtable assignment on Win32
 
 0.002     2011-07-09 18:33:23 Europe/Amsterdam
           Fix PerlIO::text on multiplicity perls
