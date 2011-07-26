@@ -1,6 +1,7 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+          Made module compatible with default :stdio
 
 0.003     2011-07-22 14:17:07 Europe/Amsterdam
           Fixed vtable assignment on Win32
