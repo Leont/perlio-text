@@ -53,6 +53,7 @@ done_testing;
 
 sub check_handle {
 	my ($fh, $test_type, $expected) = @_;
+	local $Test::Builder::Level = $Test::Builder::Level + 1;
 	if (ref($expected)) {
 		my %compound = %{ $expected };
 		for my $subtype (keys %compound) {
