@@ -23,7 +23,7 @@ static IV PerlIOText_pushed(pTHX_ PerlIO *f, const char *mode, SV *arg, PerlIO_f
 
 static PerlIO* PerlIOText_open(pTHX_ PerlIO_funcs* self, PerlIO_list_t* layers, IV n, const char* mode, int fd, int imode, int perm, PerlIO* f, int narg, SV** args) {
 #if defined(PERLIO_USING_CRLF) && PERL_VERSION < 14
-//	if (layers->array[n - 1].funcs == PerlIO_crlf)
+	if (layers->array[n - 1].funcs == &PerlIO_crlf)
 		layers->array[n - 1].funcs = &PerlIO_perlio;
 #endif
 	PerlIO_funcs * const tab = PerlIO_layer_fetch(aTHX_ layers, n - 1, NULL);
