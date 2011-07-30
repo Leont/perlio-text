@@ -1,6 +1,8 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+
+0.005     2011-07-30 14:24:45 Europe/Amsterdam
           Deal with PerlIO_crlf and PerlIO_perlio not being exported on windows
 
 0.004     2011-07-26 23:09:45 Europe/Amsterdam
