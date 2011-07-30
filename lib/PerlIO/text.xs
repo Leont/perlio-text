@@ -14,8 +14,8 @@ static IV PerlIOText_pushed(pTHX_ PerlIO *f, const char *mode, SV *arg, PerlIO_f
 	if (PerlIO_push(aTHX_ f, encoding, mode, arg) != f)
 		return -1;
 #ifdef PERLIO_USING_CRLF
-    PerlIO_funcs* crlf = PerlIO_find_layer(aTHX_ "crlf", 4, 0);
-    if (PerlIO_push(aTHX_ f, crlf, mode, &PL_sv_undef) != f)
+	PerlIO_funcs* crlf = PerlIO_find_layer(aTHX_ "crlf", 4, 0);
+	if (PerlIO_push(aTHX_ f, crlf, mode, &PL_sv_undef) != f)
 		return -1;
 #endif
 	return f ? 0 : -1;
@@ -23,8 +23,16 @@ static IV PerlIOText_pushed(pTHX_ PerlIO *f, const char *mode, SV *arg, PerlIO_f
 
 static PerlIO* PerlIOText_open(pTHX_ PerlIO_funcs* self, PerlIO_list_t* layers, IV n, const char* mode, int fd, int imode, int perm, PerlIO* f, int narg, SV** args) {
 #if defined(PERLIO_USING_CRLF) && PERL_VERSION < 14
-	if (layers->array[n - 1].funcs == &PerlIO_crlf)
-		layers->array[n - 1].funcs = &PerlIO_perlio;
+	/* This is to get around RT#38456 */
+	static int initialized = 0;
+	static PerlIO_funcs *crlf, *perlio;
+	if (!initialized) {
+		crlf = PerlIO_find_layer(aTHX_ "crlf", 4, FALSE);
+		perlio = PerlIO_find_layer(aTHX_ "perlio", 6, FALSE);
+		initialized = 1;
+	}
+	if (layers->array[n - 1].funcs == crlf)
+		layers->array[n - 1].funcs = perlio;
 #endif
 	PerlIO_funcs * const tab = PerlIO_layer_fetch(aTHX_ layers, n - 1, NULL);
 	if (tab && tab->Open) {
@@ -41,7 +49,7 @@ const PerlIO_funcs PerlIO_text = {
 	sizeof(PerlIO_funcs),
 	"text",
 	0,
-	PERLIO_K_UTF8 | PERLIO_K_MULTIARG,
+	PERLIO_K_UTF8,
 	PerlIOText_pushed,
 	NULL,
 	PerlIOText_open,

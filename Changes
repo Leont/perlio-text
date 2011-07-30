@@ -1,6 +1,7 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+          Deal with PerlIO_crlf and PerlIO_perlio not being exported on windows
 
 0.004     2011-07-26 23:09:45 Europe/Amsterdam
           Made module compatible with default :stdio
