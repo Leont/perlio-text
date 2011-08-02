@@ -27,8 +27,9 @@ my @lines = qw/foo bar báz/;
 
 {
 	my $ret = open my $fh, '>:text', $filename;
+	my $errno = $! + 0;
 	ok !defined $ret, 'Can\'t open :text without an argument';
-	is $!+0, EINVAL, 'Error is EINVAL';
+	is $errno, EINVAL, 'Error is EINVAL';
 }
 
 
