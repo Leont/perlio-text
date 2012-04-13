@@ -1,6 +1,7 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+          Made code C89 compliant
 
 0.006     2011-08-03 10:42:13 Europe/Amsterdam
           Save errno sooner to avoid false negatives
