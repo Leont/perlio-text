@@ -1,6 +1,8 @@
 Revision history for PerlIO-text
 
 {{$NEXT}}
+
+0.007     2012-04-13 19:20:09 Europe/Amsterdam
           Made code C89 compliant
 
 0.006     2011-08-03 10:42:13 Europe/Amsterdam
